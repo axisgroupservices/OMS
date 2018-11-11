@@ -24,6 +24,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -70,9 +73,6 @@ public class JpaConfiguration {
 			return dataSource;
 	}
 
-	/*
-	 * Entity Manager Factory setup.
-	 */
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -114,5 +114,17 @@ public class JpaConfiguration {
 		txManager.setEntityManagerFactory(emf);
 		return txManager;
 	}
+	
+	
+	  @Bean
+	  @Autowired
+	    public WebMvcConfigurer corsConfigurer() {
+	        return new WebMvcConfigurerAdapter() {
+	            @Override
+	            public void addCorsMappings(CorsRegistry registry) {
+	                registry.addMapping("/channelmaster").allowedOrigins("http://localhost:8081/popadvertising-jpa");
+	            }
+	        };
+}
 
 }
