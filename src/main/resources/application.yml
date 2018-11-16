@@ -6,12 +6,12 @@ spring:
   profiles: prod
 datasource:
   sampleapp:
-    url: jdbc:mysql://192.168.1.77:3306/oms
-    username: axis
+    url: jdbc:mysql://development.cjxp2kswevxt.us-west-2.rds.amazonaws.com:3306/oms
+    username: axisgroup
     password: qwas143$AQZDEWSX
     driverClassName: com.mysql.jdbc.Driver
     defaultSchema:
-    maxPoolSize: 20
+    maxPoolSize: 2
     hibernate:
       hbm2ddl.method: create
       show_sql: true

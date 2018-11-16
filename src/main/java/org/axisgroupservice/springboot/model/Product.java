@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="product")
@@ -35,8 +32,12 @@ public class Product {
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="priceId")
 	private Price price;
-	@ElementCollection(targetClass=String.class)
-	private List<String> shipping;
+	@OneToMany(
+	        mappedBy = "product", 
+	        cascade = CascadeType.ALL, 
+	        orphanRemoval = true
+	    ) 
+	private List<Address> shipping;
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="notificationId")
 	private Notification notification;
@@ -94,10 +95,10 @@ public class Product {
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-	public List<String> getShipping() {
+	public List<Address> getShipping() {
 		return shipping;
 	}
-	public void setShipping(List<String> shipping) {
+	public void setShipping(List<Address> shipping) {
 		this.shipping = shipping;
 	}
 	public Notification getNotification() {

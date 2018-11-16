@@ -35,7 +35,6 @@ public class Category {
 	private List<String> averageRatings;
 	@ElementCollection(targetClass=String.class)
 	private List<String > brands;
-	
 	@OneToMany(
 	        mappedBy = "category", 
 	        fetch = FetchType.LAZY,

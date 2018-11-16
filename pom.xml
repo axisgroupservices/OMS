@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.axisgroupservice.springboot</groupId>
-	<artifactId>Popadvertising-JPA</artifactId>
+	<artifactId>oms</artifactId>
 	<version>1.0.0</version>
 
 	<name>oms</name>
@@ -84,7 +84,7 @@
   </dependency>
 	</dependencies>
 	<build>
-	<finalName>popadvertising-jpa</finalName>
+	<finalName>oms</finalName>
 		<plugins>
 		
 			<plugin><!-- Include if you want to make an executable jar[FAT JAR which 
